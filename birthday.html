@@ -1,0 +1,228 @@
+<title>تهنئة فضولي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: night-match poster. Chalk pitch markings behind a big greeting, an interactive penalty stage, then a match report of wishes. */
+:root {
+  --night: #0a1d15;
+  --pitch: #11301f;
+  --chalk: #f2f6ee;
+  --muted: #9bb7a5;
+  --gold: #f2c14e;
+  --gold-deep: #c9962a;
+  --card: #0f2819;
+  --line: rgba(242, 246, 238, 0.16);
+  --font-display: "Reem Kufi", "Segoe UI", Tahoma, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--night);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.8;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  overflow-x: hidden;
+}
+.page { max-width: 920px; margin-inline: auto; display: flex; flex-direction: column; gap: 56px; padding-block: 40px 32px; }
+
+/* hero */
+.hero { position: relative; text-align: center; padding: 56px 8px 24px; isolation: isolate; }
+.pitch { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.55; }
+.pitch * { fill: none; stroke: var(--line); stroke-width: 2; }
+.tag { display: inline-block; font-size: 14px; letter-spacing: 0.04em; color: var(--gold); border: 1px solid var(--gold-deep); border-radius: 999px; padding: 2px 16px; }
+h1 { font-family: var(--font-display); font-weight: 700; margin: 18px 0 0; line-height: 1.25; text-wrap: balance; font-size: clamp(34px, 8vw, 64px); }
+.name { display: block; font-family: var(--font-display); font-weight: 700; font-size: clamp(76px, 22vw, 190px); line-height: 1.05; color: var(--gold); text-shadow: 0 6px 0 rgba(0,0,0,0.35), 0 0 60px rgba(242,193,78,0.25); }
+.wish { margin: 12px auto 0; max-width: 28ch; font-size: clamp(20px, 4.4vw, 28px); font-weight: 500; text-wrap: balance; }
+.wish b { color: var(--gold); font-weight: 600; }
+
+/* stage */
+.stage-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.board { display: flex; align-items: stretch; gap: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--card); }
+.board div { padding: 8px 22px; text-align: center; min-width: 0; }
+.board div + div { border-inline-start: 1px solid var(--line); }
+.board small { display: block; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.board strong { font-family: var(--font-display); font-size: 34px; line-height: 1.2; color: var(--gold); font-variant-numeric: tabular-nums; display: block; }
+.stage { position: relative; width: 100%; max-width: 520px; height: 300px; background: linear-gradient(to bottom, var(--pitch), #0d2618); border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.stage::before { content: ""; position: absolute; inset: auto 0 0 0; height: 55%; background: repeating-linear-gradient(to bottom, transparent 0 28px, rgba(255,255,255,0.035) 28px 56px); }
+.goal { position: absolute; top: 24px; left: 50%; width: min(360px, 80%); height: 120px; transform: translateX(-50%); border: 5px solid var(--chalk); border-bottom: 0; border-radius: 4px 4px 0 0;
+  background: repeating-linear-gradient(45deg, transparent 0 9px, rgba(242,246,238,0.22) 9px 10px), repeating-linear-gradient(-45deg, transparent 0 9px, rgba(242,246,238,0.22) 9px 10px); }
+.ball { position: absolute; bottom: 22px; left: 50%; width: 56px; height: 56px; margin-left: -28px; z-index: 2; will-change: transform; filter: drop-shadow(0 6px 4px rgba(0,0,0,0.45)); }
+.ball.fly { transition: transform 0.75s cubic-bezier(0.2, 0.7, 0.3, 1); }
+.goal-text { position: absolute; inset: auto 0 96px 0; text-align: center; font-family: var(--font-display); font-size: 54px; font-weight: 700; color: var(--gold); opacity: 0; transform: scale(0.6); pointer-events: none; z-index: 3; text-shadow: 0 4px 0 rgba(0,0,0,0.4); }
+.goal-text.show { animation: pop 1s ease-out forwards; }
+@keyframes pop { 0% { opacity: 0; transform: scale(0.5); } 20% { opacity: 1; transform: scale(1.15); } 70% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1); } }
+button.kick { font-family: var(--font-display); font-weight: 700; font-size: 22px; background: var(--gold); color: #1c1503; border: 0; border-radius: 6px; padding: 10px 34px; cursor: pointer; box-shadow: 0 4px 0 var(--gold-deep); transition: transform 0.1s, box-shadow 0.1s; }
+button.kick:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--gold-deep); }
+button.kick:focus-visible, input:focus-visible { outline: 3px solid var(--chalk); outline-offset: 3px; }
+.hint { color: var(--muted); font-size: 15px; margin: 0; }
+
+/* match report */
+.report h2 { font-family: var(--font-display); font-size: 30px; margin: 0 0 20px; font-weight: 700; }
+.report ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.report li { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.report li:last-child { border-bottom: 1px solid var(--line); }
+.min { font-family: var(--font-display); font-weight: 700; font-size: 30px; color: var(--gold); line-height: 1.3; font-variant-numeric: tabular-nums; }
+.report p { margin: 0; max-width: 60ch; }
+.final .min { color: var(--chalk); }
+.final p { font-weight: 600; font-size: 20px; }
+
+/* sign-off */
+.sign { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: space-between; }
+.sign .msg { margin: 0; flex: 1 1 260px; min-width: 0; font-family: var(--font-display); font-size: 24px; line-height: 1.6; }
+.sign .msg span { color: var(--gold); }
+.sign label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; color: var(--muted); flex: 0 1 220px; min-width: 0; }
+.sign input { font-family: var(--font-body); font-size: 17px; color: var(--chalk); background: var(--night); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; width: 100%; }
+.sign input::placeholder { color: var(--muted); }
+
+canvas#fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
+
+@media (max-width: 480px) {
+  .report li { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; }
+  .min { font-size: 24px; }
+  .board div { padding: 8px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ball.fly { transition-duration: 0.01s; }
+  .goal-text.show { animation-duration: 0.01s; }
+}
+</style>
+
+<main dir="rtl" lang="ar" class="page">
+
+  <header class="hero">
+    <svg class="pitch" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect x="20" y="20" width="760" height="420" rx="4"></rect>
+      <line x1="400" y1="20" x2="400" y2="440"></line>
+      <circle cx="400" cy="230" r="78"></circle>
+      <circle cx="400" cy="230" r="4" style="fill: var(--line)"></circle>
+      <rect x="20" y="130" width="120" height="200"></rect>
+      <rect x="660" y="130" width="120" height="200"></rect>
+    </svg>
+    <span class="tag">إعلان رسمي من المدرجات</span>
+    <h1>كل عام وأنت بخير
+      <span class="name">فضولي</span>
+    </h1>
+    <p class="wish">إن شاء الله تصير <b>أفضل لاعب كرة</b></p>
+  </header>
+
+  <section class="stage-wrap" aria-label="ضربة الجزاء">
+    <div class="board" aria-live="polite">
+      <div><small>الأهداف</small><strong id="count">٠</strong></div>
+      <div><small>الحالة</small><strong id="state" style="font-size:22px">جاهز</strong></div>
+    </div>
+    <div class="stage" id="stage">
+      <div class="goal" id="goal"></div>
+      <div class="goal-text" id="goalText">جووول!</div>
+      <svg class="ball" id="ball" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="#f7f9f4" stroke="#1b2a22" stroke-width="3"></circle>
+        <polygon points="50,33 66,45 60,64 40,64 34,45" fill="#1b2a22"></polygon>
+        <g stroke="#1b2a22" stroke-width="3" stroke-linecap="round" fill="none">
+          <line x1="50" y1="33" x2="50" y2="4"></line>
+          <line x1="66" y1="45" x2="94" y2="36"></line>
+          <line x1="60" y1="64" x2="78" y2="88"></line>
+          <line x1="40" y1="64" x2="22" y2="88"></line>
+          <line x1="34" y1="45" x2="6" y2="36"></line>
+        </g>
+      </svg>
+    </div>
+    <button class="kick" id="kick" type="button">اضرب الكرة</button>
+    <p class="hint">كل ضربة هدف جديد في عيد ميلادك.</p>
+  </section>
+
+  <section class="report">
+    <h2>تقرير المباراة</h2>
+    <ol>
+      <li><span class="min">١′</span><p>صافرة البداية. عام جديد من العمر وفرصة جديدة للتسجيل.</p></li>
+      <li><span class="min">٣٠′</span><p>نتمنى لك تمريرات دقيقة، وتسديدات في الزاوية البعيدة، وأهداف ينسى الحارس بعدها اسمه.</p></li>
+      <li><span class="min">٦٠′</span><p>الله يخليك تلعب بنفس الحماس، ويكون كل من تحبهم في المدرجات يشجعونك.</p></li>
+      <li class="final"><span class="min">٩٠′+</span><p>وإن شاء الله تصير أفضل لاعب كرة، ونشوفك ترفع الكأس. كل عام وأنت بخير يا فضولي.</p></li>
+    </ol>
+  </section>
+
+  <footer class="sign">
+    <p class="msg">من قلبي لك، <span id="from">من محبيك</span></p>
+    <label for="who">اكتب اسمك لتظهر في التهنئة
+      <input id="who" type="text" maxlength="30" placeholder="اسمك هنا" autocomplete="off">
+    </label>
+  </footer>
+
+</main>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var goal = document.getElementById('goal');
+  var ball = document.getElementById('ball');
+  var btn = document.getElementById('kick');
+  var countEl = document.getElementById('count');
+  var stateEl = document.getElementById('state');
+  var goalText = document.getElementById('goalText');
+  var count = 0, busy = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function arabic(n) { return String(n).replace(/\d/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'[d]; }); }
+
+  /* confetti */
+  var cv = document.getElementById('fx'), ctx = cv.getContext('2d'), parts = [], raf = 0;
+  function size() { cv.width = window.innerWidth; cv.height = window.innerHeight; }
+  size(); window.addEventListener('resize', size);
+  var colors = ['#f2c14e', '#f2f6ee', '#3fae6a', '#e4572e', '#6fd0c4'];
+  function burst(x, y) {
+    if (reduce) return;
+    for (var i = 0; i < 90; i++) {
+      var a = Math.random() * Math.PI * 2, s = 4 + Math.random() * 9;
+      parts.push({ x: x, y: y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 5, w: 6 + Math.random() * 6, h: 4 + Math.random() * 5, r: Math.random() * 6, vr: (Math.random() - 0.5) * 0.4, c: colors[i % colors.length], life: 90 + Math.random() * 50 });
+    }
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+  function tick() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    parts = parts.filter(function (p) { return p.life > 0 && p.y < cv.height + 20; });
+    parts.forEach(function (p) {
+      p.vy += 0.28; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life--;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      ctx.globalAlpha = Math.min(1, p.life / 30); ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+    });
+    raf = parts.length ? requestAnimationFrame(tick) : 0;
+    if (!parts.length) ctx.clearRect(0, 0, cv.width, cv.height);
+  }
+
+  /* kick */
+  function kick() {
+    if (busy) return;
+    busy = true; btn.disabled = true; stateEl.textContent = 'تسديدة…';
+    var b = ball.getBoundingClientRect(), g = goal.getBoundingClientRect();
+    var dx = (Math.random() - 0.5) * g.width * 0.6;
+    var dy = (b.top + b.height / 2) - (g.top + g.height * 0.55);
+    ball.classList.add('fly');
+    ball.style.transform = 'translate(' + dx + 'px,' + (-dy) + 'px) scale(0.6) rotate(540deg)';
+    setTimeout(function () {
+      count++; countEl.textContent = arabic(count); stateEl.textContent = 'هدف!';
+      goalText.classList.remove('show'); void goalText.offsetWidth; goalText.classList.add('show');
+      var r = ball.getBoundingClientRect();
+      burst(r.left + r.width / 2, r.top + r.height / 2);
+    }, reduce ? 20 : 760);
+    setTimeout(function () {
+      ball.classList.remove('fly'); ball.style.transform = '';
+      stateEl.textContent = 'جاهز'; btn.disabled = false; busy = false;
+    }, reduce ? 60 : 1500);
+  }
+  btn.addEventListener('click', kick);
+  ball.addEventListener('click', kick);
+
+  /* sign-off */
+  var who = document.getElementById('who'), from = document.getElementById('from');
+  who.addEventListener('input', function () {
+    var v = who.value.trim();
+    from.textContent = v ? v : 'من محبيك';
+  });
+})();
+</script>
